@@ -20,10 +20,7 @@ var buildProduction = utilities.env.production;
 var del = require('del');
 var browserSync = require('browser-sync').create();
 var shell = require('gulp-shell');
-// var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
-
-////////////////////// TYPESCRIPT //////////////////////
 
 
 gulp.task('tsClean', function(){
@@ -33,8 +30,6 @@ gulp.task('tsClean', function(){
 gulp.task('ts', ['tsClean'], shell.task([
   'tsc'
 ]));
-
-////////////////////// BOWER //////////////////////
 
 
 gulp.task('jsBowerClean', function(){
@@ -60,7 +55,6 @@ gulp.task('cssBower', ['cssBowerClean'], function() {
 
 gulp.task('bower', ['jsBower', 'cssBower']);
 
-////////////////////// SASS //////////////////////
 
 gulp.task('cssBuild', function() {
   return gulp.src(['resources/styles/*'])
@@ -70,7 +64,6 @@ gulp.task('cssBuild', function() {
     .pipe(gulp.dest('./build/css'));
 });
 
-////////////////////// SERVER //////////////////////
 
 
 gulp.task('serve', ['build'], function() {
@@ -106,5 +99,4 @@ gulp.task('tsBuild', ['ts'], function(){
 gulp.task('build', ['ts'], function(){
   // we can use the buildProduction environment variable here later.
   gulp.start('bower');
-  // gulp.start('sassBuild');
 });
