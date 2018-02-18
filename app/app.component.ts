@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <h1>To Do List for {{month}}-{{day}}-{{year}}</h1>
     <h2>{{currentFocus}}</h2>
     <ul>
-      <li>{{firstTask.description}}</li>
+      <li *ngFor="let currentTask of tasks">{{currentTask.description}}</li>
     </ul>
   </div>
   `
@@ -20,7 +20,7 @@ export class AppComponent {
   day: number = this.now.getDate();
   year: number = this.now.getFullYear();
   luckyNumber: number = Math.floor(this.now.getTime() * Math.random() / 420);
-  firstTask: Task = new Task("Go to ReactNative meeting", "Meet new people, learn more about ReactNative", 3);
+  tasks: Task[] = [new Task("Go to ReactNative meeting", "Meet new people, learn more about ReactNative", 3), new Task("Poop my pants", "It's fun", 4), new Task("I am Tosk", "I am Tosk", 9)];
 }
 
 export class Task {
