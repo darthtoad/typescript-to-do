@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
     <h1>To Do List for {{month}}-{{day}}-{{year}}</h1>
     <h2>{{currentFocus}}</h2>
     <ul>
-      <li *ngFor="let currentTask of tasks">{{currentTask.description}}   <button (click)="editTask()">Edit!</button>      <button (click)="isComplete(currentTask)">Check Completeness</button></li>
+      <li [class]="priorityColor(currentTask)" *ngFor="let currentTask of tasks">{{currentTask.description}}   <button (click)="editTask()">Edit!</button>      <button (click)="isComplete(currentTask)">Check Completeness</button></li>
     </ul>
   </div>
   `
@@ -32,6 +32,16 @@ export class AppComponent {
       alert("You have finished your task. Good work!");
     } else {
       alert("YOU HAVE NOT COMPLETED YOUR TASK, YOU IMBECILE!");
+    }
+  }
+
+  priorityColor(currentTask){
+    if (currentTask.priority > 8){
+      return "bg-danger";
+    } else if (currentTask.priority > 3) {
+      return  "bg-warning";
+    } else {
+      return "bg-info";
     }
   }
 }
