@@ -13,6 +13,7 @@ import { Task } from './task.model';
     <task-list [childTaskList]="tasks" (clickSender)="editTask($event)"></task-list>
     <hr>
     <edit-task [childSelectedTask]="selectedTask" (doneButtonClickedSender)="finishedEditing()"></edit-task>
+    <new-task (newTaskSender)="addTask($event)"></new-task>
   </div>
   `
 })
@@ -37,6 +38,10 @@ export class AppComponent {
 
   finishedEditing() {
     this.selectedTask = null;
+  }
+
+  addTask(newTask: Task) {
+    this.tasks.push(newTask);
   }
 
   poop() {
