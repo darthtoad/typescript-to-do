@@ -58,9 +58,7 @@ gulp.task('bower', ['jsBower', 'cssBower']);
 
 gulp.task('cssBuild', function() {
   return gulp.src(['resources/styles/*'])
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .pipe(sourcemaps.write())
+    .pipe(concat('styles.css'))
     .pipe(gulp.dest('./build/css'));
 });
 
